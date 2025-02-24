@@ -24,8 +24,6 @@ export default Button
 const styles = StyleSheet.create({
     circleButton: {
         position: 'absolute',
-        bottom: 64,
-        right: 64,
         backgroundColor: "#467FD3",
         height: 64,
         width: 64,
