@@ -1,23 +1,8 @@
-import { StyleSheet, View } from "react-native"
-import Button from "../components/Button"
-import Header from "../components/Header"
-import MemoListItem from "../components/MemoListItem"
+import { Redirect } from "expo-router"
 
 const Index = (): JSX.Element => {
     return (
-        <View style={styles.container}>
-            <Header />
-            <MemoListItem />
-            <Button />
-        </View>
+        <Redirect href="memo/list" />
     )
 }
-
 export default Index
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1, // 画面全体に要素を広げる
-        backgroundColor: '#ffffff'
-    }
-})

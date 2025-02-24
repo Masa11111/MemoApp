@@ -1,9 +1,21 @@
-import { StyleSheet, Text, View } from "react-native"
+import { Feather } from "@expo/vector-icons"
+import { ComponentProps } from "react"
+import { StyleSheet, View, ViewStyle } from "react-native"
 
-const Button = (): JSX.Element => {
+interface Props {
+    iconName: ComponentProps<typeof Feather>["name"]
+    iconColor?: ComponentProps<typeof Feather>["color"]
+    style?: ViewStyle
+}
+
+const Button = (props: Props): JSX.Element => {
+    const { iconName, iconColor, style } = props
     return (
-        <View style={styles.circleButton}>
-            <Text style={styles.circleButtonLabel}>＋</Text>
+        <View style={[
+            styles.circleButton,
+            style
+        ]}>
+            <Feather name={iconName} size={40} color={iconColor} />
         </View>
     )
 }
