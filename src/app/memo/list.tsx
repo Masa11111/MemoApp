@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native"
-import Button from "../../components/Button"
+import CircleButton from "../../components/CircleButton"
 import Header from "../../components/Header"
 import MemoListItem from "../../components/MemoListItem"
 
@@ -14,7 +14,7 @@ const List = (): JSX.Element => {
                 <MemoListItem />
                 <MemoListItem />
             </View>
-            <Button iconName="plus" iconColor={"white"} ></Button>
+            <CircleButton iconName="plus" iconColor={"white"} ></CircleButton>
         </View>
     )
 }

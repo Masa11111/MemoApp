@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView, StyleSheet, TextInput, View } from "react-native"
-import Button from "../../components/Button"
+import CircleButton from "../../components/CircleButton"
 import Header from "../../components/Header"
 
 const Create = (): JSX.Element => {
@@ -9,7 +9,7 @@ const Create = (): JSX.Element => {
             <View style={styles.inputContainer}>
                 <TextInput multiline value="" style={styles.inputText}></TextInput>
             </View>
-            <Button iconName="check" iconColor={"white"} style={styles.checkButton} />
+            <CircleButton iconName="check" iconColor={"white"} style={styles.checkButton} />
         </KeyboardAvoidingView>
     )
 }

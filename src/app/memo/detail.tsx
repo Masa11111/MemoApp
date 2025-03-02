@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native"
-import Button from "../../components/Button"
+import CircleButton from "../../components/CircleButton"
 import Header from "../../components/Header"
 
 const Detail = (): JSX.Element => {
@@ -15,7 +15,7 @@ const Detail = (): JSX.Element => {
                     買い物リスト書体やレイアウトなどを確認するために用います。本文用なので使い方を間違えると不自然に見えることもありますので要注意。
                 </Text>
             </ScrollView>
-            <Button iconName="edit" iconColor={"white"} style={styles.editButton}></Button>
+            <CircleButton iconName="edit" iconColor={"white"} style={styles.editButton}></CircleButton>
         </View>
     )
 }
