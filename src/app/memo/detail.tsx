@@ -1,3 +1,4 @@
+import { router } from "expo-router"
 import { ScrollView, StyleSheet, Text, View } from "react-native"
 import CircleButton from "../../components/CircleButton"
 import Header from "../../components/Header"
@@ -15,7 +16,10 @@ const Detail = (): JSX.Element => {
                     買い物リスト書体やレイアウトなどを確認するために用います。本文用なので使い方を間違えると不自然に見えることもありますので要注意。
                 </Text>
             </ScrollView>
-            <CircleButton iconName="edit" iconColor={"white"} style={styles.editButton}></CircleButton>
+            <CircleButton
+                iconName="edit" iconColor={"white"} style={styles.editButton}
+                onPress={() => { router.push('/memo/edit') }}
+            />
         </View>
     )
 }

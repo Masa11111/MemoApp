@@ -1,7 +1,14 @@
-import { Link } from "expo-router"
+import { router } from "expo-router"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Button from "../../components/Button"
 import Header from "../../components/Header"
+
+const handlePress = (): void => {
+    // ユーザ登録
+
+    // ログイン画面へ遷移
+    router.push('/auth/log_in')
+}
 
 const SignUp = (): JSX.Element => {
     return (
@@ -11,14 +18,12 @@ const SignUp = (): JSX.Element => {
                 <Text style={styles.LoginTitle}>Sign Up</Text>
                 <TextInput style={styles.LoginInput} value="EmailAddress"></TextInput>
                 <TextInput style={styles.LoginInput} value="Password"></TextInput>
-                <Button buttonText={"Sign up"} />
+                <Button buttonText={"Sign up"} onPress={handlePress} />
                 <View style={styles.SignUp}>
                     <Text style={styles.SignUpText}>Already registered?</Text>
-                    <Link href="/auth/log_in" asChild>
-                        <TouchableOpacity>
-                            <Text style={styles.SignUpLink}>Log in.</Text>
-                        </TouchableOpacity>
-                    </Link>
+                    <TouchableOpacity onPress={() => { router.push('/auth/log_in') }}>
+                        <Text style={styles.SignUpLink}>Log in.</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

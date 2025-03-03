@@ -1,9 +1,15 @@
 import { Feather } from "@expo/vector-icons"
+import { router } from "expo-router"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+
+const handlePress = (): void => {
+    // メモ詳細画面へ遷移
+    router.push('/memo/detail')
+}
 
 const MemoListItem = (): JSX.Element => {
     return (
-        <View style={styles.memoListItem}>
+        <TouchableOpacity onPress={handlePress} style={styles.memoListItem}>
             <View>
                 <Text style={styles.memoListTitle}>買い物リスト</Text>
                 <Text style={styles.memoListDate}>2025年2月18日</Text>
@@ -11,7 +17,7 @@ const MemoListItem = (): JSX.Element => {
             <TouchableOpacity>
                 <Feather name="delete" size={20} color={'#848484'} />
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     )
 }
 
