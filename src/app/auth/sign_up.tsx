@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TextInput, View } from "react-native"
+import { Link } from "expo-router"
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Button from "../../components/Button"
 import Header from "../../components/Header"
 
@@ -13,7 +14,11 @@ const SignUp = (): JSX.Element => {
                 <Button buttonText={"Sign up"} />
                 <View style={styles.SignUp}>
                     <Text style={styles.SignUpText}>Already registered?</Text>
-                    <Text style={styles.SignUpLink}>Log in.</Text>
+                    <Link href="/auth/log_in" asChild>
+                        <TouchableOpacity>
+                            <Text style={styles.SignUpLink}>Log in.</Text>
+                        </TouchableOpacity>
+                    </Link>
                 </View>
             </View>
         </View>

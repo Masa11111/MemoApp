@@ -9,7 +9,7 @@ const Create = (): JSX.Element => {
             <View style={styles.inputContainer}>
                 <TextInput multiline value="" style={styles.inputText}></TextInput>
             </View>
-            <CircleButton iconName="check" iconColor={"white"} style={styles.checkButton} />
+            <CircleButton iconName="check" iconColor={"white"} />
         </KeyboardAvoidingView>
     )
 }
@@ -28,10 +28,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 24,
         textAlignVertical: 'top'
-    },
-    checkButton: {
-        right: 64,
-        bottom: 64
     }
 })
 
