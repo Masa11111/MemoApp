@@ -1,12 +1,10 @@
 import { router } from "expo-router"
 import { ScrollView, StyleSheet, Text, View } from "react-native"
 import CircleButton from "../../components/CircleButton"
-import Header from "../../components/Header"
 
 const Detail = (): JSX.Element => {
     return (
         <View style={styles.container}>
-            <Header />
             <View style={styles.memoHeader}>
                 <Text style={styles.memoTitle}>買い物リスト</Text>
                 <Text style={styles.memoDate}>2025年2月18日</Text>
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     },
     editButton: {
         position: 'absolute',
-        top: 160,
+        top: 60,
         bottom: 'auto'
     }
 })

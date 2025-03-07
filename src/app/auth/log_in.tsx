@@ -1,19 +1,18 @@
 import { router } from "expo-router"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Button from "../../components/Button"
-import Header from "../../components/Header"
 
 const handlePress = (): void => {
     // ログイン処理
 
     // メモ一覧へ遷移
-    router.push('/memo/list')
+    router.replace('/memo/list')
+
 }
 
 const LogIn = (): JSX.Element => {
     return (
         <View style={styles.container}>
-            <Header />
             <View style={styles.Inner}>
                 <Text style={styles.LoginTitle}>Log In</Text>
                 <TextInput style={styles.LoginInput} value="EmailAddress"></TextInput>
