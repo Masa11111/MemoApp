@@ -1,7 +1,8 @@
 import { router, useNavigation } from "expo-router"
 import { useEffect } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import CircleButton from "../../components/CircleButton"
+import LogOutButton from "../../components/LogOutButton"
 import MemoListItem from "../../components/MemoListItem"
 
 const onPress = (): void => {
@@ -12,7 +13,7 @@ const List = (): JSX.Element => {
     const navigation = useNavigation()
     useEffect(() => {
         navigation.setOptions({
-            headerRight: () => { return <Text>ログアウト</Text> }
+            headerRight: () => { return <LogOutButton /> }
         })
     }, [])
     return (
