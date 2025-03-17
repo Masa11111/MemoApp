@@ -1,4 +1,15 @@
+import { router } from "expo-router"
+import { signOut } from "firebase/auth"
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
+import { auth } from "../config"
+
+const handlePress = (): void => {
+    signOut(auth).then(() => {
+        router.replace("auth/log_in")
+    }).catch((error) => {
+        console.log("ログアウトに失敗しました。")
+    })
+}
 
 const LogOutButton = (): JSX.Element => {
     return (

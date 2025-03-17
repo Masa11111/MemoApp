@@ -1,18 +1,30 @@
 import { router } from "expo-router"
-import { useState } from "react"
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { useRef, useState } from "react"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Button from "../../components/Button"
+import { auth } from "../../config"
 
-const handlePress = (): void => {
+const signUpStatusRef = {
+    signUpError: ''
+}
+const handlePress = (email: string, password: string): void => {
     // ユーザ登録
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
 
-    // ログイン画面へ遷移
-    router.push('/auth/log_in')
+            // ログイン画面へ遷移
+            router.push('/auth/log_in')
+
+        }).catch((error) => {
+            signUpStatusRef.signUpError = '新規登録に失敗しました'
+        })
 }
 
 const SignUp = (): JSX.Element => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const signUpStatus = useRef(signUpStatusRef)
     return (
         <View style={styles.container}>
             <View style={styles.Inner}>
@@ -33,13 +45,14 @@ const SignUp = (): JSX.Element => {
                     placeholder="Password"
                     textContentType="password"
                 ></TextInput>
-                <Button buttonText={"Sign up"} onPress={handlePress} />
+                <Button buttonText={"Sign up"} onPress={() => { handlePress(email, password) }} />
                 <View style={styles.SignUp}>
                     <Text style={styles.SignUpText}>Already registered?</Text>
-                    <TouchableOpacity onPress={() => { router.push('/auth/log_in') }}>
+                    <TouchableOpacity onPress={() => { router.replace('/auth/log_in') }}>
                         <Text style={styles.SignUpLink}>Log in.</Text>
                     </TouchableOpacity>
                 </View>
+                <Text style={styles.SignUpError}>{signUpStatus.current.signUpError}</Text>
             </View>
         </View>
     )
@@ -64,7 +77,7 @@ const styles = StyleSheet.create({
         height: 48,
         fontSize: 16,
         backgroundColor: '#ffffff',
-        color: '#DDDDDD',
+        color: 'gray',
         borderColor: '#DDDDDD',
         borderWidth: 1,
         paddingVertical: 8,
@@ -84,6 +97,10 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 24,
         color: '#467FD3'
+    },
+    SignUpError: {
+        color: 'red',
+        fontSize: 14
     }
 })
 export default SignUp
