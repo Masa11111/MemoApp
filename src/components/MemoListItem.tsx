@@ -8,12 +8,11 @@ const handlePress = (): void => {
     router.push('/memo/detail')
 }
 
-interface Props {
+type Props = {
     memo: Memo
 }
 
-const MemoListItem = (props: Props): JSX.Element | null => {
-    const { memo } = props
+const MemoListItem = ({ memo }: Props): JSX.Element | null => {
 
     // データチェック
     const { bodyText, updatedAt } = memo

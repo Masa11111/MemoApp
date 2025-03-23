@@ -1,7 +1,7 @@
 import { router, useFocusEffect, useNavigation } from "expo-router"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { useCallback, useEffect, useState } from "react"
-import { StyleSheet, View } from "react-native"
+import { FlatList, StyleSheet, View } from "react-native"
 import CircleButton from "../../components/CircleButton"
 import LogOutButton from "../../components/LogOutButton"
 import MemoListItem from "../../components/MemoListItem"
@@ -58,13 +58,10 @@ const List = (): JSX.Element => {
     )
     return (
         <View style={styles.container}>
-            <View>
-                {memos.map((memo) => {
-                    // メモを一覧に表示する
-                    return <MemoListItem memo={memo} />
-                })}
-
-            </View>
+            <FlatList
+                data={memos}
+                renderItem={({ item }) => <MemoListItem memo={item} />}
+            />
             <CircleButton onPress={onPress} iconName="plus" iconColor={"white"} ></CircleButton>
         </View>
     )
