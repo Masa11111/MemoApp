@@ -21,7 +21,7 @@ const handlePress = async (bodyText: string) => {
         await addDoc(ref, {
             bodyText: bodyText, // 入力テキスト
             createdAt: Timestamp.fromDate(new Date()), // 作成日付
-            updatedAt: ''
+            updatedAt: Timestamp.fromDate(new Date()), // 更新日
         })
         router.back()
     }

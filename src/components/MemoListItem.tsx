@@ -1,18 +1,37 @@
 import { Feather } from "@expo/vector-icons"
 import { router } from "expo-router"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { type Memo } from "../app/interface/memo"
 
 const handlePress = (): void => {
     // メモ詳細画面へ遷移
     router.push('/memo/detail')
 }
 
-const MemoListItem = (): JSX.Element => {
+interface Props {
+    memo: Memo
+}
+
+const MemoListItem = (props: Props): JSX.Element | null => {
+    const { memo } = props
+
+    // データチェック
+    const { bodyText, updatedAt } = memo
+    if (!bodyText || !updatedAt) { return null }
+
+    // 日付変換
+    const updatedAtString =
+        updatedAt instanceof Date
+            ? updatedAt.toLocaleString("ja-JP")
+            : typeof updatedAt === "string"
+                ? new Date(updatedAt).toLocaleString("ja-JP")
+                : updatedAt.toDate().toLocaleString("ja-JP");
+
     return (
         <TouchableOpacity onPress={handlePress} style={styles.memoListItem}>
             <View>
-                <Text style={styles.memoListTitle}>買い物リスト</Text>
-                <Text style={styles.memoListDate}>2025年2月18日</Text>
+                <Text style={styles.memoListTitle} numberOfLines={1} >{bodyText}</Text>
+                <Text style={styles.memoListDate}>{updatedAtString}</Text>
             </View>
             <TouchableOpacity>
                 <Feather name="delete" size={20} color={'#848484'} />

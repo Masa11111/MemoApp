@@ -24,7 +24,7 @@ const handlePress = (email: string, password: string): void => {
 const LogIn = (): JSX.Element => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const loginStatus = useRef(loginStatusRef)
+    let loginStatus = useRef(loginStatusRef)
     return (
         <View style={styles.container}>
             <View style={styles.Inner}>
