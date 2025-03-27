@@ -3,9 +3,13 @@ import { router } from "expo-router"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { type Memo } from "../app/interface/memo"
 
-const handlePress = (): void => {
+const handlePress = (memoId: string): void => {
     // メモ詳細画面へ遷移
-    router.push('/memo/detail')
+    router.push(
+        {
+            pathname: '/memo/detail',
+            params: { memoId }
+        })
 }
 
 type Props = {
@@ -27,7 +31,7 @@ const MemoListItem = ({ memo }: Props): JSX.Element | null => {
                 : updatedAt.toDate().toLocaleString("ja-JP");
 
     return (
-        <TouchableOpacity onPress={handlePress} style={styles.memoListItem}>
+        <TouchableOpacity onPress={() => { handlePress(memo.id) }} style={styles.memoListItem}>
             <View>
                 <Text style={styles.memoListTitle} numberOfLines={1} >{bodyText}</Text>
                 <Text style={styles.memoListDate}>{updatedAtString}</Text>

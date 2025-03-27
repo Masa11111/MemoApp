@@ -1,17 +1,39 @@
-import { router } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
+import { doc, onSnapshot } from "firebase/firestore"
+import { useEffect, useState } from "react"
 import { ScrollView, StyleSheet, Text, View } from "react-native"
 import CircleButton from "../../components/CircleButton"
+import { auth, db } from "../../config"
+import { Memo } from "../interface/memo"
 
 const Detail = (): JSX.Element => {
+    const params = useLocalSearchParams()
+    const [memo, setMemo] = useState<Memo | null>(null)
+    useEffect(() => {
+        if (!auth.currentUser)
+        {
+            return
+        }
+        const ref = doc(db, `users/${auth.currentUser.uid}`, String(params.Id))
+        const unsubscribe = onSnapshot(ref, (memoDoc) => {
+            const { bodyText, updatedAt } = memoDoc.data() as Memo
+            setMemo({
+                id: memoDoc.id,
+                bodyText: bodyText,
+                updatedAt: updatedAt
+            })
+        })
+        return unsubscribe
+    }, [])
     return (
         <View style={styles.container}>
             <View style={styles.memoHeader}>
-                <Text style={styles.memoTitle}>買い物リスト</Text>
-                <Text style={styles.memoDate}>2025年2月18日</Text>
+                <Text style={styles.memoTitle} numberOfLines={1}>{memo?.bodyText}</Text>
+                <Text style={styles.memoDate}>{memo?.updatedAt.toDate().toLocaleString("ja-JP")}</Text>
             </View>
             <ScrollView style={styles.memoBody}>
                 <Text style={styles.memoBodyText}>
-                    買い物リスト書体やレイアウトなどを確認するために用います。本文用なので使い方を間違えると不自然に見えることもありますので要注意。
+                    {memo?.bodyText}
                 </Text>
             </ScrollView>
             <CircleButton
@@ -48,10 +70,10 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     memoBody: {
-        paddingVertical: 32,
         paddingHorizontal: 27
     },
     memoBodyText: {
+        paddingVertical: 32,
         fontSize: 16,
         lineHeight: 24
     },
